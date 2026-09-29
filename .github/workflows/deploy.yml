@@ -20,7 +20,7 @@ jobs:
           php-version: '8.3' # Adjust to match your server's PHP version
 
       - name: Install Dependencies (Composer)
-        run: composer update --optimize-autoloader --no-dev
+        run: composer update --optimize-autoloader --no-dev 
 
 
       - name: Install NPM Dependencies & Build
