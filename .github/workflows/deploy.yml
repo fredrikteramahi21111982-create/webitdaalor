@@ -33,4 +33,10 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/ # Or the specific path like /domains/inspektoratalor.com/public_html/
+          server-dir: /public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.env
+            **/storage/**
