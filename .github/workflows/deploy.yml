@@ -38,14 +38,7 @@ jobs:
           local_path: './*'
           remote_path: '/public_html/'
           sftp_only: true
-          exclude: |
-            .git*
-            .git*/**
-            .github/**
-            .env
-            storage/**
-            vendor/**
-            node_modules/**
+
 
 
 
