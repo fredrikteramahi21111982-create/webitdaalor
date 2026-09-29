@@ -29,22 +29,24 @@ jobs:
           npm run build
 
       - name: Sync files via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.FTP_SERVER }}
           port: 22
-          protocol: sftp
-          server-dir: /public_html/
+          local_path: './*'
+          remote_path: '/public_html/'
+          sftp_only: true
           exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/.env
-            **/storage/**
-            **/vendor/**
-            **/node_modules/**
+            .git*
+            .git*/**
+            .github/**
+            .env
+            storage/**
+            vendor/**
+            node_modules/**
+
 
 
 
