@@ -47,7 +47,7 @@ jobs:
           rm -rf .git
           rm -rf tests
 
-      - name: Deploy via SFTP
+      - name: Deploy via Rsync (SSH)
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           username: ${{ secrets.FTP_USERNAME }}
@@ -56,5 +56,4 @@ jobs:
           port: 65002
           local_path: './'
           remote_path: './public_html/'
-          sftp_only: true
           sftpArgs: '-o StrictHostKeyChecking=no'
