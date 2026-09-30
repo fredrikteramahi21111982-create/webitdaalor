@@ -87,7 +87,7 @@
                                 </td>
                                 <td class="px-8 py-5 whitespace-nowrap text-sm text-slate-600 font-medium">{{ $doc->year ?? '-' }}</td>
                                 <td class="px-8 py-5 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 inline-flex items-center gap-2 group/btn">
+                                    <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" download="{{ $doc->title }}" class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 inline-flex items-center gap-2 group/btn">
                                         <svg class="w-4 h-4 group-hover/btn:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                         Unduh
                                     </a>

@@ -32,7 +32,10 @@ Route::get('/dokumen', function (\Illuminate\Http\Request $request) {
     // Pass years for the filter dropdown
     $years = \App\Models\Document::select('year')->whereNotNull('year')->distinct()->orderBy('year', 'desc')->pluck('year');
     
-    return view('dokumen', compact('documents', 'years'));
+    // Pass document categories for the filter dropdown
+    $globalDocCategories = \App\Models\DocumentCategory::all();
+    
+    return view('dokumen', compact('documents', 'years', 'globalDocCategories'));
 });
 
 Route::get('/berita', function () {

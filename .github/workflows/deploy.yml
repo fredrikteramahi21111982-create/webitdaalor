@@ -36,10 +36,16 @@ jobs:
         run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
       - name: Install NPM Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Frontend
         run: npm run build
+
+      - name: Clean up before deploy
+        run: |
+          rm -rf node_modules
+          rm -rf .git
+          rm -rf tests
 
       - name: Deploy via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
@@ -48,6 +54,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server: ${{ secrets.FTP_SERVER }}
           port: 65002
-          local_path: './*'
+          local_path: './'
           remote_path: './public_html/'
           sftp_only: true
+          sftpArgs: '-o StrictHostKeyChecking=no'
