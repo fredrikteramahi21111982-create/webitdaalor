@@ -38,7 +38,12 @@ jobs:
           local_path: './*'
           remote_path: './public_html/'
           sftp_only: true
-
+          filters: |
+            !/vendor
+            !/node_modules
+            !/.git
+            !/.github
+            !/.env
 
 
 
