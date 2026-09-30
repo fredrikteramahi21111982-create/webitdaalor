@@ -55,5 +55,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           port: 65002
           local_path: './'
-          remote_path: './public_html/'
+          remote_path: './domains/inspektoratalor.com/public_html/'
           sftpArgs: '-o StrictHostKeyChecking=no'
