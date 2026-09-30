@@ -1,4 +1,4 @@
-name: Deploy to Hostinger
+name: Deploy Laravel to Hostinger
 
 on:
   push:
@@ -6,30 +6,43 @@ on:
       - main
       - master
 
+  workflow_dispatch:
+
 jobs:
   web-deploy:
-    name: Deploy to Hosting
+    name: Deploy to Hostinger
     runs-on: ubuntu-latest
+
     steps:
+
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3' # Adjust to match your server's PHP version
+          php-version: '8.3'
+          extensions: mbstring, bcmath, intl, pdo, pdo_mysql
+          tools: composer
+          coverage: none
 
-      - name: Install Dependencies (Composer)
-        run: composer update --optimize-autoloader --no-dev 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
 
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
-      - name: Install NPM Dependencies & Build
-        run: |
-          npm install
-          npm run build
+      - name: Install NPM Dependencies
+        run: npm ci
 
-      - name: Sync files via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Build Frontend
+        run: npm run build
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
@@ -38,14 +51,3 @@ jobs:
           local_path: './*'
           remote_path: './public_html/'
           sftp_only: true
-          filters: |
-            !/vendor
-            !/node_modules
-            !/.git
-            !/.github
-            !/.env
-
-
-
-
-
