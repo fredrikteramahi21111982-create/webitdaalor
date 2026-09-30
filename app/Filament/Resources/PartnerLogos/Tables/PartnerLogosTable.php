@@ -16,8 +16,14 @@ class PartnerLogosTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label('Instansi')
                     ->searchable(),
-                ImageColumn::make('image'),
+                TextColumn::make('url')
+                    ->label('Website')
+                    ->limit(30),
+                ImageColumn::make('logo_auto')
+                    ->label('Logo Terdeteksi')
+                    ->state(fn ($record) => 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' . urlencode($record->url) . '&size=128'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

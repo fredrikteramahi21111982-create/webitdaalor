@@ -87,10 +87,16 @@
                                 </td>
                                 <td class="px-8 py-5 whitespace-nowrap text-sm text-slate-600 font-medium">{{ $doc->year ?? '-' }}</td>
                                 <td class="px-8 py-5 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" download="{{ $doc->title }}" class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 inline-flex items-center gap-2 group/btn">
-                                        <svg class="w-4 h-4 group-hover/btn:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                                        Unduh
-                                    </a>
+                                    <div class="flex items-center justify-end gap-2">
+                                        <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" class="text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 hover:text-blue-600 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 inline-flex items-center gap-1.5 shadow-sm">
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                            Lihat
+                                        </a>
+                                        <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" download="{{ Str::slug($doc->title) }}" class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 inline-flex items-center gap-1.5 group/btn">
+                                            <svg class="w-4 h-4 group-hover/btn:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                            Unduh
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                             @empty

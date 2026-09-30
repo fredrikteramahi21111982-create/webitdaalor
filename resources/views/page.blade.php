@@ -10,6 +10,15 @@
             @endif
             <div class="prose prose-blue prose-lg max-w-none text-gray-700">
                 {!! $page->content !!}
+
+                @if($page->extra_sections && is_array($page->extra_sections))
+                    @foreach($page->extra_sections as $section)
+                        @if(isset($section['title']) && isset($section['content']))
+                            <h2>{{ $section['title'] }}</h2>
+                            {!! $section['content'] !!}
+                        @endif
+                    @endforeach
+                @endif
             </div>
         @else
             <div class="text-center py-20 text-gray-500">

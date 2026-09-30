@@ -13,11 +13,15 @@ class PartnerLogoForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Nama Instansi (Cth: BPK Perwakilan NTT)')
                     ->required(),
-                FileUpload::make('image')
-                    ->disk('public')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp', 'image/gif'])
+                TextInput::make('url')
+                    ->label('Tautan Website Instansi')
+                    ->url()
+                    ->placeholder('https://ntt.bpk.go.id')
                     ->required(),
+                \Filament\Forms\Components\Hidden::make('image')
+                    ->default('auto'),
             ]);
     }
 }

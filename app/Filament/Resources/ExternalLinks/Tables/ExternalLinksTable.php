@@ -18,8 +18,9 @@ class ExternalLinksTable
                     ->searchable(),
                 TextColumn::make('url')
                     ->searchable(),
-                TextColumn::make('icon')
-                    ->searchable(),
+                \Filament\Tables\Columns\ImageColumn::make('icon_auto')
+                    ->label('Ikon / Logo')
+                    ->state(fn ($record) => 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' . urlencode($record->url) . '&size=128'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

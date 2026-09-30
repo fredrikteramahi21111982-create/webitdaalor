@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inspektorat Daerah Kabupaten Alor</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- AlpineJS for Interactive Components -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Outfit', sans-serif; }
@@ -156,10 +158,15 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-6 border-b border-gray-700 pb-2">Tautan Penting</h3>
                     <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="/profil" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Profil Kami</a></li>
-                        <li><a href="/dokumen" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Dokumen Perencanaan</a></li>
-                        <li><a href="/berita" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Berita Terkini</a></li>
-                        <li><a href="https://alorkab.go.id/x/" target="_blank" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Portal Pemkab Alor</a></li>
+                        @if(isset($importantLinks) && $importantLinks->count() > 0)
+                            @foreach($importantLinks as $link)
+                                <li><a href="{{ $link->url }}" target="_blank" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> {{ $link->title }}</a></li>
+                            @endforeach
+                        @else
+                            <li><a href="/profil" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Profil Kami</a></li>
+                            <li><a href="/dokumen" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Dokumen Perencanaan</a></li>
+                            <li><a href="/berita" class="hover:text-white transition flex items-center gap-2"><span class="text-blue-500">&rarr;</span> Berita Terkini</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div>
@@ -186,6 +193,14 @@
         </div>
     </footer>
 
+    <!-- Floating Action Button (FAB) -->
+    <a href="/" class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-yellow-500 text-slate-900 rounded-full shadow-[0_4px_14px_rgba(234,179,8,0.5)] hover:bg-yellow-400 hover:scale-110 hover:-translate-y-1 transition-all duration-300 group" aria-label="Kembali ke Beranda">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <span class="absolute right-16 bg-slate-900 text-white text-xs font-bold py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none">
+            Ke Beranda Utama
+        </span>
+    </a>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById('mobile-menu-button');
@@ -198,5 +213,7 @@
             }
         });
     </script>
+    
+    @stack('scripts')
 </body>
 </html>

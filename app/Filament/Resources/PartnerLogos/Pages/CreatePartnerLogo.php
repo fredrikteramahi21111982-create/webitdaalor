@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePartnerLogo extends CreateRecord
 {
     protected static string $resource = PartnerLogoResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

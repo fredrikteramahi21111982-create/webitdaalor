@@ -12,14 +12,13 @@ class ExternalLinkForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Nama Layanan / Aplikasi')
                     ->required(),
                 TextInput::make('url')
+                    ->label('Tautan (URL)')
                     ->url()
                     ->required(),
-                \Filament\Forms\Components\FileUpload::make('icon')
-                    ->disk('public')
-                    ->directory('icons')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp', 'image/gif'])
+                \Filament\Forms\Components\Hidden::make('icon')
                     ->default(null),
             ]);
     }

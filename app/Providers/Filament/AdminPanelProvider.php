@@ -32,9 +32,17 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo_alor.png'))
             ->brandLogoHeight('3.5rem')
             ->colors([
-                'primary' => \Filament\Support\Colors\Color::Blue,
+                'primary' => \Filament\Support\Colors\Color::Amber,
+                'gray' => \Filament\Support\Colors\Color::Slate,
+                'info' => \Filament\Support\Colors\Color::Blue,
+                'success' => \Filament\Support\Colors\Color::Emerald,
+                'warning' => \Filament\Support\Colors\Color::Orange,
+                'danger' => \Filament\Support\Colors\Color::Rose,
             ])
-            ->font('Outfit')
+            ->font('Inter')
+            ->favicon(asset('images/logo_alor.png'))
+            ->sidebarCollapsibleOnDesktop()
+            ->maxContentWidth('full')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
